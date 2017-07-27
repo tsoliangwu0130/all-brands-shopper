@@ -6,8 +6,8 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        age = request.form['age']
-        return render_template('index.html', age=age)
+        query = request.form['query']
+        return render_template('index.html', query=query)
     return render_template('index.html')
 
 

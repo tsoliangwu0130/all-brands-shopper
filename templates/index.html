@@ -6,16 +6,14 @@
         <title>Hello from Flask</title>
     </head>
     <body>
-        <h1>Hello Flask!</h1>
-        <p>How old are you?</p>
         <form action="/" method="POST">
             <div class="form-group">
-                <input type="text" name="age">
+                <input type="text" name="query">
             </div>
             <input class="btn btn-primary" type="submit" value="Submit">
         </form>
-        {% if age %}
-        <p>You age is {{ age }}!</p>
+        {% if query %}
+        <p>Query: {{ query }}</p>
         {% endif %}
     </body>
     <!-- Scripts -->
