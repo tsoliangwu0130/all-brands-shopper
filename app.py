@@ -8,13 +8,19 @@ AT_URL = 'https://www.anntaylor.com/search/searchResults.jsp?question='
 app = Flask(__name__)
 
 
+def get_product(html_doc):
+    soup = BeautifulSoup(html_doc, "html.parser")
+    res = soup.find(id="pid-9947721")
+    return res
+
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         query = request.form['query']
-        res = requests.get(AF_URL + query)
-        soup = BeautifulSoup(res.text, "html.parser")
-        return render_template('index.html', res=soup.find(id="pid-9947721"))
+        res_html = requests.get(AF_URL + query)
+        res = get_product(res_html.text)
+        return render_template('index.html', res=res)
     return render_template('index.html')
 
 
