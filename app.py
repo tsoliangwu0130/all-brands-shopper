@@ -10,7 +10,6 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-
     if request.method == 'POST':
         query = request.form['query']
         res = requests.get(AF_URL + query)
