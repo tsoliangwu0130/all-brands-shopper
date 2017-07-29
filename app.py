@@ -1,3 +1,4 @@
+from bs4 import BeautifulSoup
 from flask import Flask, render_template, request
 import requests
 
@@ -13,7 +14,8 @@ def index():
     if request.method == 'POST':
         query = request.form['query']
         res = requests.get(AF_URL + query)
-        return render_template('index.html', res=res.text)
+        soup = BeautifulSoup(res.text, "html.parser")
+        return render_template('index.html', res=soup.find(id="pid-9947721"))
     return render_template('index.html')
 
 
